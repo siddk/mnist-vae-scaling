@@ -133,3 +133,9 @@ dmypy.json
 
 # Mac OS
 .DS_Store
+
+# Directories
+data/
+logs/
+runs/
+visualizations/

@@ -1,22 +1,12 @@
-# Mjolnir
+# MNIST VAE (Scaling)
 
-> *Mjolnir*: Thor's hammer, a divine instrument making its holder worthy of wielding lightning.
-
-Template repository for managing machine learning research projects built with
-[PyTorch-Lightning](https://pytorch-lightning.readthedocs.io/en/latest/), using [Anaconda](https://www.anaconda.com/)
-for Python Dependencies and Sane Quality Defaults (Black, Flake, isort).
-
-Template created by Sidd Karamcheti.
+Simple repository for training a VAE on the MNIST dataset, for testing/developing a solution for multi-cluster (+ cloud)
+job submission. Built with  [PyTorch-Lightning](https://pytorch-lightning.readthedocs.io/en/latest/), using
+[Anaconda](https://www.anaconda.com/) for Python dependencies and sane quality defaults (Black, Flake, isort).
 
 ---
 
 ## Contributing
-
-Key section if this is a shared research project (e.g., other collaborators). Usually you should have a detailed set
-of instructions in [`CONTRIBUTING.md`](./CONTRIBUTING.md) - Notably, before committing to the repository, *make
-sure to set up your dev environment and pre-commit install (`pre-commit install`)!*
-
-Here are sample contribution guidelines (high-level):
 
 + Install and activate the Conda Environment using the `QUICKSTART` instructions below.
 
@@ -30,34 +20,26 @@ your local development environment!):
 
 ## Quickstart
 
-*Note: Replace instances of `mjolnir` and other instructions with instructions specific to your repository!*
-
-Clones `mjolnir` to the working directory, then walks through dependency setup, mostly leveraging the
+Clones `mnist-vae-scaling` to the working directory, then walks through dependency setup, mostly leveraging the
 `environment-<arch>.yaml` files.
 
 ### Shared Environment (for Clusters w/ Centralized Conda)
 
-*Note: The presence of this subsection depends on your setup. With the way the Stanford NLP Cluster has been set up, and
-the way I've set up the ILIAD Cluster, this section makes it really easy to maintain dependencies across multiple
-users via centralized `conda` environments, but YMMV.*
+TBD.
 
-@Sidd (or central repository maintainer) has already set up the conda environments in Stanford-NLP/ILIAD. The only
-necessary steps for you to take are cloning the repo, activating the appropriate environment, and running
-`pre-commit install` to start developing.
-
-### Local Development - Linux w/ GPU & CUDA 11.0
+### Local Development - Linux w/ GPU & CUDA 11.3
 
 Note: Assumes that `conda` (Miniconda or Anaconda are both fine) is installed and on your path.
 
 Ensure that you're using the appropriate `environment-<gpu | cpu>.yaml` file --> if PyTorch doesn't build properly for
 your setup, checking the CUDA Toolkit is usually a good place to start. We have `environment-<gpu>.yaml` files for CUDA
-11.0 (and any additional CUDA Toolkit support can be added -- file an issue if necessary).
+11.3 (and any additional CUDA Toolkit support can be added -- file an issue if necessary).
 
 ```bash
-git clone https://github.com/pantheon-616/mjolnir.git
-cd mjolnir
-conda env create -f environments/environment-gpu.yaml  # Choose CUDA Kernel based on Hardware - by default used 11.0!
-conda activate mjolnir
+https://github.com/siddk/mnist-vae-scaling.git
+cd mnist-vae-scaling
+conda env create -f environments/environment-gpu.yaml  # Choose CUDA Kernel based on Hardware - by default used 11.3!
+conda activate mnist-vae-scaling
 pre-commit install  # Important!
 ```
 
@@ -67,10 +49,10 @@ Note: Assumes that `conda` (Miniconda or Anaconda are both fine) is installed an
 environment file.
 
 ```bash
-git clone https://github.com/pantheon-616/mjolnir.git
-cd mjolnir
+https://github.com/siddk/mnist-vae-scaling.git
+cd mnist-vae-scaling
 conda env create -f environments/environment-cpu.yaml
-conda activate mjolnir
+conda activate mnist-vae-scaling
 pre-commit install  # Important!
 ```
 
@@ -117,15 +99,15 @@ Use these commands if you're starting a repository from scratch (this shouldn't 
 , since you'll be setting things up, but I like to keep this in the README in case things break in the future).
 Generally, if you're just trying to run/use this code, look at the Quickstart section above.
 
-### GPU & Cluster Environments (CUDA 11.0)
+### GPU & Cluster Environments (CUDA 11.3)
 
 ```bash
-conda create --name mjolnir python=3.8
-conda install pytorch torchvision torchaudio cudatoolkit=11.0 -c pytorch   # CUDA=11.0 on most of Cluster!
-conda install ipython
-conda install pytorch-lightning -c conda-forge
+conda create --name mnist-vae-scaling python=3.8
+conda activate mnist-vae-scaling
+conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch   # CUDA=11.0 on most of Cluster!
+conda install ipython pytorch-lightning -c conda-forge
 
-pip install black flake8 isort matplotlib pre-commit quinine wandb
+pip install black flake8 isort matplotlib pre-commit quinine rich wandb
 
 # Install other dependencies via pip below -- conda dependencies should be added above (always conda before pip!)
 ...
@@ -136,12 +118,12 @@ pip install black flake8 isort matplotlib pre-commit quinine wandb
 Similar to the above, but installs the CPU-only versions of Torch and similar dependencies.
 
 ```bash
-conda create --name mjolnir python=3.8
+conda create --name mnist-vae-scaling python=3.8
+conda activate mnist-vae-scaling
 conda install pytorch torchvision torchaudio -c pytorch
-conda install ipython
-conda install pytorch-lightning -c conda-forge
+conda install ipython pytorch-lightning -c conda-forge
 
-pip install black flake8 isort matplotlib pre-commit quinine wandb
+pip install black flake8 isort matplotlib pre-commit quinine rich wandb
 
 # Install other dependencies via pip below -- conda dependencies should be added above (always conda before pip!)
 ...
@@ -149,5 +131,5 @@ pip install black flake8 isort matplotlib pre-commit quinine wandb
 
 ### Containerized Setup
 
-Support for running `mjolnir` inside of a Docker or Singularity container is TBD. If this support is urgently required,
-please file an issue.
+Support for running `mnist-vae-scaling` inside of a Docker or Singularity container is TBD. If this support is urgently
+required, please file an issue.
